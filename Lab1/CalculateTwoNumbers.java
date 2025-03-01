@@ -1,4 +1,4 @@
-package Lab01.src;
+package Lab1;
 import javax.swing.JOptionPane;
 public class CalculateTwoNumbers {
     public static void main(String[] args) {
