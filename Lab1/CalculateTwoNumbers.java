@@ -20,19 +20,19 @@ public class CalculateTwoNumbers {
         double difference = num1 - num2;
         double product = num1 * num2;
 
-        strNotification += "Sum: " + sum + "\n";
-        strNotification += "Difference: " + difference + "\n";
-        strNotification += "Product: " + product + "\n";
+        strNotification += "Tổng: " + sum + "\n";
+        strNotification += "Hiệu: " + difference + "\n";
+        strNotification += "Tích: " + product + "\n";
 
         if (num2 == 0) {
             JOptionPane.showMessageDialog(null,
-                    "Error: Division by zero is not allowed!",
+                    "Error: Không thể thực hiện phép chia cho 0",
                     "Division Error", JOptionPane.ERROR_MESSAGE);
         } else {
             double quotient = num1 / num2;
-            strNotification += "Quotient: " + quotient;
+            strNotification += "Thương: " + quotient;
             JOptionPane.showMessageDialog(null, strNotification,
-                    "Calculation Results", JOptionPane.INFORMATION_MESSAGE);
+                    "Kết quả", JOptionPane.INFORMATION_MESSAGE);
         }
         System.exit(0);
     }
