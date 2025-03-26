@@ -1,0 +1,15 @@
+Question: If you create a constructor method to build a DVD by title then create a constructor method to build 
+a DVD by category. Does JAVA allow you to do this? 
+- Có thể
+- Trong Java, có thể thực hiện chồng phương thức (constructor overloading) nếu chữ ký của các constructor khác nhau. Chữ ký của một phương thức (hoặc constructor) được xác định bởi tên và danh sách kiểu của các tham số, chứ không xét đến tên của các tham số.
+
+Question: Is JAVA a Pass by Value or a Pass by Reference programming language? 
+- Java là ngôn ngữ truyền tham số theo kiểu "Pass by Value"
+
+Question:  
+1. After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two 
+objects still remain? 
+- Trong Java, khi truyền đối tượng vào phương thức, ta truyền tham chiếu của đối tượng theo kiểu pass by value, tức là chỉ sao chép giá trị tham chiếu, không thay đổi đối tượng gốc. Do đó, việc hoán đổi tham chiếu trong phương thức không ảnh hưởng đến đối tượng ngoài phương thức.
+2. After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is 
+the title of the JungleDVD changed? 
+- Khi truyền đối tượng jungleDVD vào phương thức, tham chiếu đến đối tượng được truyền đi, vì vậy khi gọi dvd.setTitle(), phương thức thay đổi trực tiếp tiêu đề của đối tượng jungleDVD
