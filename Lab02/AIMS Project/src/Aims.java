@@ -1,22 +1,17 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Aims {
-    // Danh sách DVD của cửa hàng
+public class Aims{
     private static ArrayList<DigitalVideoDisc> store = new ArrayList<>();
-    // Danh sách đơn hàng
     private static ArrayList<Order> orders = new ArrayList<>();
-
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-
-        // Khởi tạo cửa hàng với một vài DVD
+        // Khởi tạo cửa hàng
         store.add(new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f));
         store.add(new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 124, 24.95f));
         store.add(new DigitalVideoDisc("Aladdin", "Animation", 18.99f));
 
         Cart cart = new Cart();
-
         while (true) {
             System.out.println("\n----- Welcome to AIMS Project -----");
             System.out.println("1. Customer");
@@ -25,23 +20,18 @@ public class Aims {
             System.out.print("Select role: ");
             int role = scanner.nextInt();
             scanner.nextLine();
-
-            if (role == 1) {
-                customerMenu(scanner, cart);
-            } else if (role == 2) {
-                managerMenu(scanner);
-            } else if (role == 3) {
+            if(role == 1) customerMenu(scanner, cart);
+            else if(role == 2)managerMenu(scanner);
+            else if (role == 3){
                 System.out.println("Exiting system.");
                 break;
-            } else {
-                System.out.println("Invalid option.");
             }
+            else System.out.println("Invalid option.");
         }
         scanner.close();
     }
-
     // Menu dành cho khách hàng
-    private static void customerMenu(Scanner scanner, Cart cart) {
+    private static void customerMenu(Scanner scanner, Cart cart){
         while (true) {
             System.out.println("\n--- Customer Menu ---");
             System.out.println("1. Browse DVDs in store");
@@ -59,42 +49,49 @@ public class Aims {
             System.out.print("Choose an option: ");
             int option = scanner.nextInt();
             scanner.nextLine();
-
             if (option == 1) {
                 browseStore();
-            } else if (option == 2) {
+            }
+            else if (option == 2) {
                 searchDVD(scanner);
-            } else if (option == 3) {
+            }
+            else if (option == 3) {
                 viewAndPlayDVD(scanner);
-            } else if (option == 4) {
+            }
+            else if (option == 4) {
                 addDVDToCart(scanner, cart);
-            } else if (option == 5) {
+            }
+            else if (option == 5) {
                 cart.displayCart();
-            } else if (option == 6) {
+            }
+            else if (option == 6) {
                 System.out.print("Enter DVD ID to update quantity: ");
                 int dvdId = scanner.nextInt();
                 System.out.print("Enter new quantity: ");
                 int newQty = scanner.nextInt();
                 scanner.nextLine();
                 cart.updateQuantity(dvdId, newQty);
-            } else if (option == 7) {
+            }
+            else if (option == 7){
                 System.out.print("Enter DVD ID to remove from cart: ");
                 int dvdId = scanner.nextInt();
                 scanner.nextLine();
                 DigitalVideoDisc target = null;
-                // Tìm DVD trong cart theo id (cách đơn giản: lọc qua store)
-                for (DigitalVideoDisc d : store) {
-                    if (d.getId() == dvdId) {
+                // Tìm DVD trong cart theo id
+                for (DigitalVideoDisc d : store){
+                    if (d.getId() == dvdId){
                         target = d;
                         break;
                     }
                 }
-                if (target != null) {
+                if (target != null){
                     cart.removeDigitalVideoDisc(target);
-                } else {
+                }
+                else{
                     System.out.println("DVD not found.");
                 }
-            } else if (option == 8) {
+            }
+            else if (option == 8){
                 System.out.println("Sort by: 1. Title   2. Cost");
                 int sortOpt = scanner.nextInt();
                 scanner.nextLine();
@@ -117,7 +114,6 @@ public class Aims {
                     System.out.println("Item not found in cart.");
                 }
             } else if (option == 11) {
-                // Đặt hàng: hiển thị giỏ hàng, nhập thông tin giao hàng, thanh toán
                 if (cart.getQtyOrdered() == 0) {
                     System.out.println("Cart is empty. Cannot place order.");
                     continue;
@@ -126,12 +122,11 @@ public class Aims {
                 String address = scanner.nextLine();
                 System.out.print("Enter delivery instructions: ");
                 String instructions = scanner.nextLine();
-                // Tạo đơn hàng từ giỏ hàng hiện tại
+                // Tạo đơn hàng
                 DigitalVideoDisc[] orderItems = cart.getItems();
                 int quantity = cart.getQtyOrdered();
                 Order order = new Order(orderItems, quantity, address, instructions);
                 order.displayInvoice();
-
                 // Thanh toán
                 System.out.print("Proceed to payment? (yes/no): ");
                 String payChoice = scanner.nextLine();
@@ -148,9 +143,9 @@ public class Aims {
                     Transaction trans = payment.processPayment(card, order.getTotalCostAfterVAT());
                     System.out.println(trans.toString());
                 }
-                // Lưu đơn hàng vào danh sách orders
+                // Lưu đơn hàng
                 orders.add(order);
-                // Sau khi đặt hàng, reset giỏ hàng (tạo mới)
+                // reset giỏ hàng
                 cart = new Cart();
             } else if (option == 12) {
                 break;
@@ -159,7 +154,6 @@ public class Aims {
             }
         }
     }
-
     // Menu dành cho manager
     private static void managerMenu(Scanner scanner) {
         // Giả sử tài khoản manager: username=admin, password=admin
@@ -305,7 +299,6 @@ public class Aims {
             System.out.println(dvd.toString());
         }
     }
-
     // Xem chi tiết DVD và cho phép “play”
     private static void viewAndPlayDVD(Scanner scanner) {
         System.out.print("Enter DVD ID to view details: ");
@@ -330,8 +323,7 @@ public class Aims {
         }
     }
 
-    // Thêm DVD vào giỏ từ cửa hàng: người dùng nhập DVD ID
-    private static void addDVDToCart(Scanner scanner, Cart cart) {
+    private static void addDVDToCart(Scanner scanner, Cart cart){
         System.out.print("Enter DVD ID to add to cart: ");
         int dvdId = scanner.nextInt();
         scanner.nextLine();
@@ -348,12 +340,7 @@ public class Aims {
             System.out.println("DVD not found in store.");
         }
     }
-
-    // Tính tổng chi phí sau VAT (để sử dụng trong thanh toán)
-    // VAT = 10%
-    public static float totalCostAfterVAT(Order order) {
-        // Trong Order đã tính toán sẵn, nên ta có thể lấy thông tin đó
-        // (Trong phiên bản này, đơn hàng hiển thị tổng cost sau VAT trong invoice)
-        return 0; // chỉ để minh họa; thanh toán thực tế được thực hiện trong Payment
+    public static float totalCostAfterVAT(Order order){
+        return 0;
     }
 }
