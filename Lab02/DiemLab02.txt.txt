@@ -1,3 +1,4 @@
 8
 Biểu đồ UC: UC place order include bị sai
 Thiếu tác nhân Payment System
+Nên xem Login của Manager chính là authentication
