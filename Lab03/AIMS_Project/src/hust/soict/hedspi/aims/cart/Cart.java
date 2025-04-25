@@ -1,4 +1,3 @@
-// File: src/hust/soict/hedspi/aims/cart/Cart.java
 package hust.soict.hedspi.aims.cart;
 
 import hust.soict.hedspi.aims.media.Media;
