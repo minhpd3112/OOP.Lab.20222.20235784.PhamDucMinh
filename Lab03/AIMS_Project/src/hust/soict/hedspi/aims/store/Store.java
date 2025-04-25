@@ -29,10 +29,6 @@ public class Store {
         System.out.println("*****************");
     }
 
-    /**
-     * Trả về danh sách tất cả media trong store
-     * mà cùng kiểu với clazz (VD: DigitalVideoDisc.class)
-     */
     public <T extends Media> List<T> getItemsInStore(Class<T> clazz) {
         return itemsInStore.stream()
                 .filter(clazz::isInstance)
