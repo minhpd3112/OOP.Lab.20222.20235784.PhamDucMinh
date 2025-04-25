@@ -166,7 +166,6 @@ public class Aims {
         }
     }
 
-    /** Thêm sẵn vài media vào store để test */
     private static void seedStore() {
         store.addMedia(new DigitalVideoDisc(1, "Star Wars", "Sci-Fi", "George Lucas", 125, 24.95f));
         store.addMedia(new DigitalVideoDisc(2, "Aladdin",   "Animation", "John Musker", 90, 18.99f));
